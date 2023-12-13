@@ -46,3 +46,5 @@ const myComponent = createComponent('div', { id: 'example', style: {color: 'red'
 const root = document.getElementById('root');
 root.innerHTML = myComponent;
 
+
+
