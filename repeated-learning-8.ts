@@ -39,8 +39,11 @@ function stypeValueMaker(...styles: string[]): string {
  */
 
 function createElement(tagNmae: string, props?: Props, ...children: string[]): string {
+  // init
   let elementStrings: string[] = [];
 
+  // 태그 시작 부분
+  // 태그 시작 부분을 조립하는 아래의 기능도 필요하다면 함수로 분리할 수 있습니다.
   let startTag = `<${tagNmae}`;
   if(props) {
       for (let prop in props) {
@@ -50,15 +53,18 @@ function createElement(tagNmae: string, props?: Props, ...children: string[]): s
     startTag += '>';
     elementStrings.push(startTag);
 
+    // 자식 요소들 추가
     elementStrings.push(...children);
 
+    // 태그 종료 부분
     elementStrings.push(`</${tagNmae}>`);
 
     const result = elementStrings.join('');
+    // join 메서드 덕분에 배열은 하나의 문자열로 합쳐집니다.
     return result;
   }
 
-
+  // 사용 예제
   let styleString = stypeValueMaker('color: red', 'font-size: 16px', 'padding: 10px');
   let divString = createElement('div', { style: styleString }, '이것은 스타일이 적용된 div 입니다.');
   console.log(divString);
